@@ -10,9 +10,12 @@ class Annotation(models.Model):
         (2, 'Annotated'),
         (3, 'Finished Annotation')
     ]
+
     text = models.TextField(blank=False)
     status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, default=1)
     finished_annotations = forms.ChoiceField(choices=("Ja", "Nein"))
+    label = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     annotated_by = models.ForeignKey(User, on_delete=models.CASCADE)
     save_finished_annotation = models.BooleanField(default=False)
     dataitem = models.ForeignKey(Dataitem, on_delete=models.CASCADE)
